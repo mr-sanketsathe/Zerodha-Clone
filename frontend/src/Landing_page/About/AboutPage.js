@@ -5,10 +5,7 @@ import Footer from '../Footer';
 function AboutPage() {
     return ( 
         <>
-        <Navbar/>
-        <Team/>
-        <Footer/>
-
+         <h1>this is about page</h1>
         </>
      );
 }

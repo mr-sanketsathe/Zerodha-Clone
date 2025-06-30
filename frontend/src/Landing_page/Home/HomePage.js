@@ -10,14 +10,14 @@ import Pricing from './Pricing';
 function HomePage() {
     return (  
         <>
-        <Navbar/>
+        
         <Hero/>
         <Awards/>
         <States/>
         <Pricing/>
         <Education/>
         <OpenAcc/>
-        <Footer/>
+        
         </>
     );
 }
