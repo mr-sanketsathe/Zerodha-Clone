@@ -19,3 +19,20 @@ a{
   font-size: 1rem;
   margin: 1rem 0;
 }
+.portal-box{
+  padding:0 15%;  
+  background-color: #387ed1;
+  color:white;
+}
+.portal-head{
+  display: flex;
+  justify-content: space-between;
+  padding:1rem 0rem;
+}
+.input-box{
+  border:none !important;
+  height:30% !important;
+  border-radius:1rem;
+  outline: none;
+  margin:1rem 0rem;
+}

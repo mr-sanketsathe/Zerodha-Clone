@@ -1,5 +1,10 @@
+import CreateTicket from "./CreateTicket";
+import SupportPortel from "./SupportPortal";
 export default function SupportPage(){
     return(
-        <h1>this Support page</h1>
+        <>
+        <SupportPortel/>
+        <CreateTicket/>
+        </>  
     )
 }
