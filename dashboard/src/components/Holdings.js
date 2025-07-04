@@ -1,5 +1,31 @@
-import { holdings } from '../Data/data';
+import axios from 'axios';
+import { useState,useEffect } from 'react';
+import VerticalBar from './VerticalBar';
 export default function Holdings() {
+    const[holdings,setholdings]=useState([]);
+    useEffect(()=>{
+        async function getHoldings() {
+         let res=await axios.get('http://localhost:3002/Holdings');
+         console.log(res);
+         setholdings(res.data)
+        }
+         getHoldings();
+    },[])
+        const labels =holdings.map((subArray)=>subArray['name']);
+         const data = {
+          labels,
+          datasets: [
+            {
+              label: 'Last Traded Price',
+              data: holdings.map((stock) =>stock.price),
+              backgroundColor: 'rgba(53, 162, 235, 0.5)',
+            },
+          ],
+        };
+
+
+
+
 
     return (
         <>
@@ -68,6 +94,7 @@ export default function Holdings() {
                     <p>P&L</p>
                 </div>
             </div>
+            <VerticalBar data={data}/>
         </>
     );
 };
