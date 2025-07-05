@@ -4,15 +4,25 @@ const express=require('express');
 const Holding=require('./Model/HoldingModel');
 const Position=require('./Model/PositionModel')
 const cors=require('cors');
-const BodyParser=require("body-parser");
+const cookieParser = require("cookie-parser");
 const url=process.env.MONGO_URL;
+const bcrypt=require('bcrypt');
+const User=require('./Model/UserModel');
 const PORT=process.env.PORT||3002;
+const authRoute = require("./Route/AuthRoute");
 const app=express();
-app.use(cors());
-app.use(BodyParser.json());
 async function main() {
     await Mongoose.connect(url);
 }
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
+app.use(
+  cors({
+    origin: ["http://localhost:3000", "http://localhost:3001"],
+    credentials: true,
+  })
+);
 app.get('/Holdings',async(req,res)=>{
     try{
         let holdings= await Holding.find({});
@@ -31,9 +41,9 @@ app.get('/Positions',async(req,res)=>{
     }
     
 })
-
+app.use('/',authRoute);
 app.listen(PORT,()=>{
-    console.log('app started');
+    console.log('app started on',PORT);
     main()
     .then(()=>{
         console.log('db connected');
@@ -42,3 +52,4 @@ app.listen(PORT,()=>{
         console.log('something went wrong',err);
     })
 })
+

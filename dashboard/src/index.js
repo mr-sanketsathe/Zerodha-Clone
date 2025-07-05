@@ -2,15 +2,17 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./index.css";
-import Home from "./components/Home";
-
+import AuthCheck from "./components/AuthCheck";
+import { UserProvider } from "./components/context/UserContext";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
+  
     <BrowserRouter>
+       <UserProvider>
       <Routes>
-        <Route path="/*" element={<Home />} />
+        <Route path="/*" element={<AuthCheck />} />
       </Routes>
+     </UserProvider>
     </BrowserRouter>
-  </React.StrictMode>
+
 );

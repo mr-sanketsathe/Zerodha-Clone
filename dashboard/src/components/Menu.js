@@ -1,7 +1,10 @@
+
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-
+import UserSection  from "./UserSection";
+import{ useUser} from "./context/UserContext"; 
 const Menu = () => {
+  let {user}=useUser();
   const [selectedMenu, setSelectedMenu] = useState(0);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
 
@@ -9,16 +12,16 @@ const Menu = () => {
     setSelectedMenu(index);
   };
 
-  const handleProfileClick = (index) => {
+  const handleProfileClick = async(index) => {
     setIsProfileDropdownOpen(!isProfileDropdownOpen);
+  
   };
-
   const menuClass = "menu";
   const activeMenuClass = "menu selected";
 
   return (
     <div className="menu-container">
-      <img src="./kiteLogo.png" style={{ width: "50px" }} />
+      <img src="./kiteLogo.png" alt='brandlogo'style={{ width: "50px" }} />
       <div className="menus">
         <ul>
           <li>
@@ -90,8 +93,11 @@ const Menu = () => {
         </ul>
         <hr />
         <div className="profile" onClick={handleProfileClick}>
-          <div className="avatar">ZU</div>
-          <p className="username">USERID</p>
+          {!isProfileDropdownOpen?
+          <><button  className="avatar">{user}</button>
+          <p className="username">{user}</p></>:<><button  className="avatar">{user[0]}</button>
+          <p className="username">{user}</p><UserSection/></>}
+            
         </div>
       </div>
     </div>

@@ -303,7 +303,9 @@ hr {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  margin-left: 20px;
+  margin-right: 3rem;
+  margin-left: 3rem;
+  
 }
 
 .profile .avatar {
@@ -849,3 +851,4 @@ hr {
 .action:hover {
   background-color: rgb(212, 212, 212);
 }
+
