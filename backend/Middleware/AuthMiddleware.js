@@ -17,7 +17,6 @@ const userVerification = async (req, res, next) => {
     }
 
     req.user = user;
-
     next(); 
   } catch (err) {
     console.error("JWT verification failed:", err.message);

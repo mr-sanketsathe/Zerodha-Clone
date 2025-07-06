@@ -1,8 +1,10 @@
 import React, { useState} from "react";
 import { watchlist } from "../Data/data";
-import{KeyboardArrowDown, KeyboardArrowUp,MoreHoriz,BarChartOutlined}  from '@mui/icons-material';
-import {Tooltip} from "@mui/material";
+import{KeyboardArrowDown, KeyboardArrowUp}  from '@mui/icons-material';
 import DoughnutBar  from "./DoughnutBar";
+import StockActions from "./StockActions";
+import BuyStockWindow from "./buyStockWindow";
+
 export default function WatchList() {
     const data = {
       labels: watchlist.map((subArray)=>subArray['name']),
@@ -82,47 +84,26 @@ const WatchListItem = ({ stock }) => {
           <span className="price">{stock.price}</span>
         </div>
       </div>
-      {showWatchlistActions && <WatchListActions uid={stock.name} />}
+      {showWatchlistActions && <WatchListActions stock={stock} />}
     </li>
   );
 };
 
-const WatchListActions = ({ uid }) => {
-
-
-  return (
-    <span className="actions">
-      <span >
-        <Tooltip
-          title="Buy (B)"
-          placement="top"
-          arrow 
-        >
-          <button className="buy">Buy</button>
-        </Tooltip>
-        <Tooltip
-          title="Sell (S)"
-          placement="top"
-          arrow
-          
-        >
-          <button className="sell">Sell</button>
-        </Tooltip>
-        <Tooltip
-          title="Analytics (A)"
-          placement="top"
+const WatchListActions = ({ stock}) => {
+ let[buyWindow,setbuyWindow]=useState(false);
+  let[sellWindow,setsellWindow]=useState(false);
+    function handleBuy(){
+       setbuyWindow(!buyWindow);
+    }
+    function handleSell(){
+      console.log('stok sell successfully')
+      setsellWindow(!sellWindow);
+    }
     
-        >
-          <button className="action">
-            <BarChartOutlined className="icon" />
-          </button>
-        </Tooltip>
-        <Tooltip title="More" placement="top" arrow>
-          <button className="action">
-            <MoreHoriz className="icon" />
-          </button>
-        </Tooltip>
-      </span>
-    </span>
+  return (
+    <>
+     <StockActions handleBuy={handleBuy} handleSell={handleSell} />
+    {buyWindow?<BuyStockWindow stock={stock}/>:null}
+    </>
   );
 };

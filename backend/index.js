@@ -3,11 +3,11 @@ const Mongoose=require('mongoose');
 const express=require('express');
 const Holding=require('./Model/HoldingModel');
 const Position=require('./Model/PositionModel')
+const User=require('./Model/UserModel');
 const cors=require('cors');
 const cookieParser = require("cookie-parser");
 const url=process.env.MONGO_URL;
 const bcrypt=require('bcrypt');
-const User=require('./Model/UserModel');
 const PORT=process.env.PORT||3002;
 const authRoute = require("./Route/AuthRoute");
 const app=express();
@@ -38,6 +38,16 @@ app.get('/Positions',async(req,res)=>{
         res.json(Positions);
     }catch(err){
         console.log(err);
+    }
+    
+})
+app.post('/OrderList',async(req,res)=>{
+    try{
+    let{id}=req.body;
+    let currUser= await User.findById(id).populate('Orders');
+    return res.json(currUser);
+    }catch(err){
+        return res.status(404).json('user not found');
     }
     
 })

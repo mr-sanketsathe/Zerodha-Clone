@@ -1,4 +1,5 @@
 const User = require("../Model/UserModel");
+const OrdersModel=require('../Model/OrdersModel');
 const createSecretToken = require("../Utils/SecretToken");
 const bcrypt = require("bcrypt");
 
@@ -18,7 +19,6 @@ const Signup = async (req, res, next) => {
       withCredentials: true,
       httpOnly: true,
     });
-    console.log(user);
     return res.status(201).json({
       message: "User signed in successfully",
       success: true,
@@ -73,4 +73,25 @@ const getUser = (req, res) => {
 const dashboard= async(req,res,next)=>{
      return res.json({ message: "Welcome to dashboard" });
 }
-module.exports = {Signup,Login,dashboard,logout,getUser};
+
+const getOrders=async(req,res,next)=>{
+  try{
+  let {name,price,qty,mode,userId}=req.body;
+   let newOrder=new OrdersModel({
+    name:name,
+    price:price,
+    qty:qty,
+    mode:mode
+   })
+  let newUser= await User.findById(userId);
+  newUser.Orders.push(newOrder);
+  let OrderRes=await newOrder.save();
+  let userRes=await newUser.save();
+   return res.status(200).json(`stock ${mode}`);
+  }catch(err){
+   return res.status(404).json('something went wrong');
+  }
+  
+
+}
+module.exports = {Signup,Login,dashboard,logout,getUser,getOrders};

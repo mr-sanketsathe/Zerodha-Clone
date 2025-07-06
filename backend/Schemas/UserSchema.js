@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
-
 const UserSchema = new mongoose.Schema({
   email: {
     type: String,
@@ -19,6 +18,13 @@ const UserSchema = new mongoose.Schema({
     type: Date,
     default: new Date(),
   },
+ Orders: [
+  {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Order", 
+  },
+],
+
 });
 
 UserSchema.pre("save", async function () {

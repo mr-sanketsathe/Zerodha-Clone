@@ -94,9 +94,9 @@ const Menu = () => {
         <hr />
         <div className="profile" onClick={handleProfileClick}>
           {!isProfileDropdownOpen?
-          <><button  className="avatar">{user}</button>
-          <p className="username">{user}</p></>:<><button  className="avatar">{user[0]}</button>
-          <p className="username">{user}</p><UserSection/></>}
+          <><button  className="avatar">{user[0]}</button>
+          <p className="username">{user[0]}</p></>:<><button  className="avatar">{user[0]}</button>
+          <p className="username">{user[0]}</p><UserSection/></>}
             
         </div>
       </div>

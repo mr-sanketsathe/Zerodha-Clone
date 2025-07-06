@@ -6,7 +6,7 @@ const Summary = () => {
   return (
     <>
       <div className="username">
-        <h6>Hi, {user}</h6>
+        <h6>Hi, {user[0]}</h6>
         <hr className="divider" />
       </div>
 
