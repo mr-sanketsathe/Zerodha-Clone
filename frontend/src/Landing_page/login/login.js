@@ -31,7 +31,7 @@ const LoginPage = () => {
       if (data.success) {
         toast.success("Login successful!");
         setTimeout(() => {
-         window.location.href = "http://localhost:3001/";
+         window.location.href = process.env.REACT_APP_ORIGIN;
         }, 1500);
       } else {
         toast.error(data.message);
