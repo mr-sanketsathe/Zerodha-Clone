@@ -6,5 +6,9 @@ const orderSchema = new Schema({
   price: { type: Number, required: true },
   qty: { type: Number, required: true },
   mode: { type: String, required: true },
+  createdAt: {
+    type: Date,
+    default: new Date(),
+  },
 });
 module.exports = orderSchema;
