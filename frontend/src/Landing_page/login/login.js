@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import {  Link } from "react-router-dom";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const LoginPage = () => {
-  const navigate = useNavigate();
+  
   const [inputValue, setInputValue] = useState({
     email: "",
     password: "",
@@ -23,7 +23,7 @@ const LoginPage = () => {
 
     try {
       const { data } = await axios.post(
-        "http://localhost:3002/login",
+        "https://zerodhabackend-zyfe.onrender.com/login",
         { email, password },
         { withCredentials: true }
       );
@@ -31,7 +31,7 @@ const LoginPage = () => {
       if (data.success) {
         toast.success("Login successful!");
         setTimeout(() => {
-         window.location.href = "http://localhost:3001";
+         window.location.href = "http://localhost:3001/";
         }, 1500);
       } else {
         toast.error(data.message);
