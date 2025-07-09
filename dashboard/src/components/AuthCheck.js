@@ -9,7 +9,7 @@ const AuthCheck = () => {
   useEffect(() => {
     const verify = async () => {
       try {
-        const res = await axios.get("http://localhost:3002/dashboard", {
+        const res = await axios.get("https://zerodhabackend-zyfe.onrender.com/dashboard", {
           withCredentials: true,
         });
         if (res.status === 200) {

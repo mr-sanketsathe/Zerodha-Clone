@@ -1,4 +1,3 @@
-
 import logout from './context/UserContext';
 export default function UserSection(){
     return(

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-// import './BuyStockWindow.css';
 import axios from 'axios';
 import { useUser } from "./context/UserContext";
 import { useNavigate } from 'react-router-dom';
@@ -13,7 +12,7 @@ export default function BuyStockWindow({ stock ,handleBuy }) {
          setloading(prev=>!prev);
         try {
             const stockRes = await axios.post(
-                "http://localhost:3002/buyStock",
+                "https://zerodhabackend-zyfe.onrender.com/buyStock",
                 {
                     name: stock.name,
                     price: price,

@@ -2,18 +2,15 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useUser } from "./context/UserContext";
-
-
 const Orders = () => {
   const { user, refresh } = useUser();
   const [orders, setOrders] = useState();
-  const [isOrders, setIsOrders] = useState(false); // not used yet
 
   useEffect(() => {
     async function getOrders() {
       try {
         const res = await axios.post(
-          "http://localhost:3002/OrderList",
+          "https://zerodhabackend-zyfe.onrender.com/OrderList",
           { id: user[2] },
           { withCredentials: true }
         );
@@ -37,7 +34,7 @@ const Orders = () => {
           <Link to="/" className="btn">Start Trading</Link>
         </div>
       ) : (
-        !isOrders && (
+          orders && (
           <table className="orders-table">
             <thead>
               <tr>

@@ -9,7 +9,7 @@ export default function SellStockwindow({stock}) {
          setloading(prev=>!prev);
         try {
             const SellStockRes = await axios.post(
-                "http://localhost:3002/sellStock",
+                "https://zerodhabackend-zyfe.onrender.com/sellStock",
                 {   stock:stock.name,
                     qty: qty,
                     userId: user[2]

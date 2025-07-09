@@ -5,7 +5,6 @@ import DoughnutBar  from "./DoughnutBar";
 import StockActions from "./StockActions";
 import BuyStockWindow from "./buyStockWindow";
 import SellStockwindow from "./SellStockwindow";
-
 export default function WatchList() {
     const data = {
       labels: watchlist.map((subArray)=>subArray['name']),

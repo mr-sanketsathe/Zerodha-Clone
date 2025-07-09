@@ -5,7 +5,7 @@ export default function Holdings() {
     const[holdings,setholdings]=useState([]);
     useEffect(()=>{
         async function getHoldings() {
-         let res=await axios.get('http://localhost:3002/Holdings');
+         let res=await axios.get('https://zerodhabackend-zyfe.onrender.com/Holdings');
          console.log(res);
          setholdings(res.data)
         }
