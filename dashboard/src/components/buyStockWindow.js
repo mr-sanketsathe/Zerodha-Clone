@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
-import './BuyStockWindow.css';
+// import './BuyStockWindow.css';
 import axios from 'axios';
 import { useUser } from "./context/UserContext";
 import { useNavigate } from 'react-router-dom';
-export default function BuyStockWindow({ stock }) {
+export default function BuyStockWindow({ stock ,handleBuy }) {
    const Navigate=useNavigate();
-    let { user } = useUser();
+    let { user,setRefresh } = useUser();
     const [qty, setQty] = useState('');
     const [price, setPrice] = useState('');
+    const [loading,setloading]=useState(true);
     async function BuyStock() {
+         setloading(prev=>!prev);
         try {
             const stockRes = await axios.post(
-                "http://localhost:3002/order",
+                "http://localhost:3002/buyStock",
                 {
                     name: stock.name,
                     price: price,
@@ -22,20 +24,23 @@ export default function BuyStockWindow({ stock }) {
                 },
                 { withCredentials: true }
             );
+
             if (stockRes.status === 200) {
+                setRefresh(prev=>!prev);
+                setloading(prev=>!prev);
                 setTimeout(() => {
                     Navigate("/orders");
                 }, 1000);
             }
         } catch (err) {
-            console.log(err);
+           console.error(err);
         }
     }
 
 
     return (
         <div className="buy-stock-container">
-            <h2>Buy Stock</h2>
+            <h2 className='buy-stock-heading'>Buy Stock</h2>
             <div className="form-group">
                 <label>Quantity:</label>
                 <input
@@ -57,7 +62,7 @@ export default function BuyStockWindow({ stock }) {
                     placeholder="Enter price"
                 />
             </div>
-            <button onClick={BuyStock}>Buy</button>
+            <button className={`${!loading?"buy-stock-btn-clk":"buy-stock-btn"}`} onClick={BuyStock}>Buy</button>
         </div>
     );
 };

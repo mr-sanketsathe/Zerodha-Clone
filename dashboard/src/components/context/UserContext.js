@@ -1,47 +1,46 @@
 // src/context/UserContext.jsx
 import React, { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
-
 // 1. Create Context
 const UserContext = createContext();
 
 // 2. Provider Component
 export const UserProvider = ({ children }) => {
-  const [user, setUser] = useState([]); // use null instead of {} initially
+  const [user, setUser] = useState([]); 
   const [loading, setLoading] = useState(true);
-
+  const [refresh,setRefresh]=useState(false);
   useEffect(() => {
     const fetchUserData = async () => {
       try {
         const userRes = await axios.get("http://localhost:3002/getuser", {
           withCredentials: true,
         });
-        console.log(userRes);
+
         const userData =[
          userRes.data.username,
          userRes.data.email,
          userRes.data._id,
         ]
         setUser(userData);
+        console.log("from context:",refresh);
       } catch (err) {
-        console.error("❌ Auth error:", err);
-        setUser(null); // optional: reset user on error
+        console.error(" Auth error:", err);
+        setUser(null); 
       } finally {
         setLoading(false);
       }
     };
 
     fetchUserData();
-  }, []); // 🔴 Important: DO NOT put `user` in dependency array here
+  }, [refresh]); 
 
   return (
-    <UserContext.Provider value={{ user, loading }}>
+    <UserContext.Provider value={{ user, loading,refresh,setRefresh}}>
       {children}
     </UserContext.Provider>
   );
 };
 
-// 3. Logout Function — this should NOT be inside the context file
 const logout = async () => {
   try {
     await axios.get("http://localhost:3002/logout", {

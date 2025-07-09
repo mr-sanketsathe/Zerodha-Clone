@@ -1,10 +1,10 @@
-import {positions} from '../Data/data.js';
+
 import { useState,useEffect } from 'react';
 import axios from "axios";
 export default function Positions(){
-   const [Positions,setPositions]=useState([]);
+   const [positions,setPositions]=useState([]);
    useEffect(()=>{
-      async function GetPositions(params) {
+      async function GetPositions() {
         try{
           let res=await axios.get('http://localhost:3002/Positions');
           setPositions(res.data);

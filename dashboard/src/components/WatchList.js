@@ -4,6 +4,7 @@ import{KeyboardArrowDown, KeyboardArrowUp}  from '@mui/icons-material';
 import DoughnutBar  from "./DoughnutBar";
 import StockActions from "./StockActions";
 import BuyStockWindow from "./buyStockWindow";
+import SellStockwindow from "./SellStockwindow";
 
 export default function WatchList() {
     const data = {
@@ -96,14 +97,14 @@ const WatchListActions = ({ stock}) => {
        setbuyWindow(!buyWindow);
     }
     function handleSell(){
-      console.log('stok sell successfully')
       setsellWindow(!sellWindow);
     }
     
   return (
     <>
      <StockActions handleBuy={handleBuy} handleSell={handleSell} />
-    {buyWindow?<BuyStockWindow stock={stock}/>:null}
+    {buyWindow?<BuyStockWindow stock={stock} handleBuy={handleBuy}/>:null}
+    {sellWindow?<SellStockwindow  stock={stock} handleSell={handleSell}/>:null}
     </>
   );
 };

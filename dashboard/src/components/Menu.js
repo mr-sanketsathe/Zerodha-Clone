@@ -68,34 +68,12 @@ const Menu = () => {
               </p>
             </Link>
           </li>
-          <li>
-            <Link
-              style={{ textDecoration: "none" }}
-              to="funds"
-              onClick={() => handleMenuClick(4)}
-            >
-              <p className={selectedMenu === 4 ? activeMenuClass : menuClass}>
-                Funds
-              </p>
-            </Link>
-          </li>
-          <li>
-            <Link
-              style={{ textDecoration: "none" }}
-              to="/apps"
-              onClick={() => handleMenuClick(6)}
-            >
-              <p className={selectedMenu === 6 ? activeMenuClass : menuClass}>
-                Apps
-              </p>
-            </Link>
-          </li>
         </ul>
         <hr />
         <div className="profile" onClick={handleProfileClick}>
           {!isProfileDropdownOpen?
-          <><button  className="avatar">{user[0]}</button>
-          <p className="username">{user[0]}</p></>:<><button  className="avatar">{user[0]}</button>
+          <><button  className="avatar">{user[0] && user[0][0]}</button>
+          <p className="username">{user[0]}</p></>:<><button  className="avatar">{user[0] && user[0][0]}</button>
           <p className="username">{user[0]}</p><UserSection/></>}
             
         </div>

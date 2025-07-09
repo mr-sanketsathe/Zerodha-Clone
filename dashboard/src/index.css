@@ -313,9 +313,8 @@ hr {
   height: 30px;
   text-align: center;
   position: relative;
-  font-size: 0.7rem;
+  font-size: 1rem;
   font-weight: 400;
-  color: rgb(221, 139, 221);
   justify-content: center;
   align-items: center;
   border-radius: 100%;
@@ -326,7 +325,7 @@ hr {
 }
 
 .profile .username {
-  font-size: 0.8rem;
+  font-size: 1rem;
   font-weight: 300;
 }
 
@@ -852,3 +851,158 @@ hr {
   background-color: rgb(212, 212, 212);
 }
 
+/* buy stock */
+.buy-stock-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    width: 320px;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    z-index: 1;
+    position: absolute;
+  
+}
+
+.buy-stock-heading {
+  text-align: center;
+  color: #333;
+  margin-bottom:10px;
+}
+
+ .buy-stock-container .form-group {
+  margin-bottom: 15px;
+}
+
+ .buy-stock-container 
+ .form-group label {
+  display: block;
+  margin-bottom: 6px;
+  color: #444;
+}
+
+.buy-stock-container
+ .form-group input {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  outline: none;
+}
+
+.buy-stock-container .buy-stock-btn {
+  width: 50%;
+  padding: 10px;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+.buy-stock-btn-clk{
+  background-color:rgb(205, 199, 199);
+  color:black;
+  border: none;
+  width: 50%;
+  padding: 10px;
+  border: none;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+.buy-stock-btn:hover {
+  background-color: #218838;
+}
+
+/* order section */
+.orders-container {
+  padding: 20px;
+  font-family: 'Segoe UI', sans-serif;
+  max-width: 900px;
+  margin: auto;
+}
+
+.orders-heading {
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-weight: 600;
+  color: #333;
+}
+
+.orders-loading {
+  text-align: center;
+  font-size: 16px;
+}
+
+.no-orders {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.no-orders .btn {
+  margin-top: 10px;
+  padding: 8px 20px;
+  background: #387ed1;
+  color: white;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.orders-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+.orders-table th,
+.orders-table td {
+  padding: 12px 16px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+.orders-table th {
+  background-color: #f9f9f9;
+  font-weight: 600;
+  color: #333;
+}
+
+.buy-order {
+  color: #28a745;
+  font-weight: 600;
+}
+
+.sell-order {
+  color: #dc3545;
+  font-weight: 600;
+}
+/* user section menu */
+.user-section-usermenu{
+  position: absolute;
+  width:8vw;
+  height:fit-content;
+  top:8%;
+  right:5%;
+  background-color: white;
+  box-shadow: 1px 1px 1px black;
+  border: 1px solid black;
+}
+
+.user-section-list-item{
+    width: 100%;
+    text-align: center;
+   
+}
+.user-section-list-item:hover{
+    background-color: rgb(235, 234, 234);
+}
