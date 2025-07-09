@@ -4,12 +4,13 @@ const express=require('express');
 const Holding=require('./Model/HoldingModel');
 const Position=require('./Model/PositionModel')
 const User=require('./Model/UserModel');
+const OrdersModel=require('./Model/OrdersModel');
 const cors=require('cors');
 const cookieParser = require("cookie-parser");
 const url=process.env.MONGO_URL;
 const bcrypt=require('bcrypt');
 const PORT=process.env.PORT||3002;
-const authRoute = require("./Route/AuthRoute");
+const authRoute = require("./Route/userRoute");
 const app=express();
 async function main() {
     await Mongoose.connect(url);
@@ -23,35 +24,12 @@ app.use(
     credentials: true,
   })
 );
-app.get('/Holdings',async(req,res)=>{
-    try{
-        let holdings= await Holding.find({});
-        res.json(holdings);
-    }catch(err){
-        console.log(err);
-    }
-    
+app.get("/DeleteUser",async (req,res)=>{
+    let Res1= await User.deleteMany({});
+    let Res2=await OrdersModel.deleteMany({});
+    return res.json({user:Res1, Order:Res2});
 })
-app.get('/Positions',async(req,res)=>{
-    try{
-        let Positions= await Position.find({});
-        res.json(Positions);
-    }catch(err){
-        console.log(err);
-    }
-    
-})
-app.post('/OrderList',async(req,res)=>{
-    try{
-    let{id}=req.body;
-    let currUser= await User.findById(id).populate('Orders');
-    return res.json(currUser);
-    }catch(err){
-        return res.status(404).json('user not found');
-    }
-    
-})
-app.use('/',authRoute);
+
 app.listen(PORT,()=>{
     console.log('app started on',PORT);
     main()
@@ -63,3 +41,4 @@ app.listen(PORT,()=>{
     })
 })
 
+app.use('/',authRoute);
