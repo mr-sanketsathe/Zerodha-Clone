@@ -14,9 +14,9 @@ export default function Hero() {
                     <div className="col-6 text-start text-muted" style={{fontSize:'1.1em'}}>
                         <p>In addition, we run a number of popular open online educational and community initiatives to empower retail traders and investors.</p>
 
-                        <p> <a href='#'>Rainmatter</a>, our fintech fund and incubator, has invested in several fintech startups with the goal of growing the Indian capital markets.</p>
+                        <p> <a  href="#">Rainmatter</a>, our fintech fund and incubator, has invested in several fintech startups with the goal of growing the Indian capital markets.</p>
 
-                       <p>And yet, we are always up to something new every day. Catch up on the latest updates on our <a href='#'>blog</a> or see what the media is <a href='#'>saying about us</a> or learn more about our business and product <a href='#'>philosophies</a></p> 
+                       <p>And yet, we are always up to something new every day. Catch up on the latest updates on our <a  href="#" onClick={(e) => e.preventDefault()}>blog</a> or see what the media is <a  href="#" onClick={(e) => e.preventDefault()}>saying about us</a> or learn more about our business and product <a  href="#" onClick={(e) => e.preventDefault()}>philosophies</a></p> 
 
                        </div>
                 </div>
