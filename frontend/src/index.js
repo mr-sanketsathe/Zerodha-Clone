@@ -26,8 +26,6 @@ root.render(
       <Route path='/Pricing' element={<PricingPage/>}/>
       <Route path='/Support' element={<SupportPage/>}/>
       <Route path='*' element={<NotFound/>}/>
-    
-
     </Routes>
     <Footer/>
   </BrowserRouter>

@@ -17,8 +17,8 @@ function States() {
                 </div>
                 <div className='col-6 p-5 text-center'>
                     <img src='media/ecosystem.png' style={{width:'80%'}} alt='ecosytem'/>
-                    <a  href='#'>Explore our products <i class="fa-solid fa-arrow-right"></i></a>
-                    <a href='#'>Try kite demo <i class="fa-solid fa-arrow-right"></i></a>
+                    <a  href='#'>Explore our products <i classname="fa-solid fa-arrow-right"></i></a>
+                    <a href='#'>Try kite demo <i classname="fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>

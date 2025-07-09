@@ -1,4 +1,4 @@
-export default function LeftSection({ imageUrl, productName, productDescription, tryDemo, learnMore, playStore, appStore }) {
+export default function LeftSection({ imageUrl, productName, productDescription, tryDemo, learnMore, }) {
     return (
         <div className="container offset-1 mt-5">
             <div className="row p-5">
@@ -12,20 +12,20 @@ export default function LeftSection({ imageUrl, productName, productDescription,
                     <p className="col-8 ">{productDescription}</p>
                     <div className="mb-3">
                       {tryDemo ? (
-                            <a   style={{marginRight:"2rem"}} href=''>
+                            <a   style={{marginRight:"2rem"}} href='#'>
                                 {tryDemo}&nbsp;&nbsp; <i className="fa-solid fa-arrow-right"></i>
                             </a>
                         ) : null}
                         {learnMore ? (
-                            <a href=''>
+                            <a href='#'>
                                 {learnMore}&nbsp;&nbsp; <i className="fa-solid fa-arrow-right"></i>
                             </a>
                         ) : null}
 
                     </div>
                     <div>
-                        <a style={{ marginRight: "2.5rem" }} href={playStore}><img src='/media/googlePlayBadge.svg' alt='playstore' /></a>
-                        <a href={appStore}><img src='/media/appstoreBadge.svg' alt='appstore' /></a>
+                        <a style={{ marginRight: "2.5rem" }} href='#'><img src='/media/googlePlayBadge.svg' alt='playstore' /></a>
+                        <a href="#"><img src='/media/appstoreBadge.svg' alt='appstore' /></a>
                     </div>
 
                 </div>

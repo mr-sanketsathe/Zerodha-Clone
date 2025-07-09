@@ -17,7 +17,7 @@ export default function Universe() {
     return (
         <div className="container ">
             <p className=" fs-4 text-center mb-5">
-                Want to know more about our technology stack? Check out the <a href=''>Zerodha.tech</a> blog.
+                Want to know more about our technology stack? Check out the <a href='#'>Zerodha.tech</a> blog.
             </p>
             <h1 className="mt-5 mb-5 text-center">The Zerodha Universe</h1>
             <p className="mb-5 text-center">Extend your trading and investment experience even further with our partner platforms</p>

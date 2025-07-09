@@ -70,15 +70,15 @@ function Footer() {
                 </p>
             
                     <div className='offset-2'>
-                        <a style={{fontSize:'14px'}}className='m-3  text-muted' href=''>NSE</a>
-                        <a style={{fontSize:'14px'}} className='m-3 text-muted'href=''>BSE</a>
-                        <a style={{fontSize:'14px'}} className='m-3 text-muted'href=''>MCX</a>
-                        <a style={{fontSize:'14px'}} className='m-3 text-muted'href=''>Terms & conditions</a>
-                        <a style={{fontSize:'14px'}} className='m-3 text-muted'href=''>Policies & procedures</a>
-                        <a style={{fontSize:'14px'}} className='m-3 text-muted'href=''>Privacy policy </a>
-                        <a style={{fontSize:'14px'}} className='m-3 text-muted'href=''>Disclosure </a>
-                        <a style={{fontSize:'14px'}} className='m-3 text-muted'href=''>For investor's attention</a>
-                        <a style={{fontSize:'14px'}} className='m-3 text-muted'href=''>Investor charter</a>
+                        <a style={{fontSize:'14px'}}className='m-3  text-muted' href='#'>NSE</a>
+                        <a style={{fontSize:'14px'}} className='m-3 text-muted'href='#'>BSE</a>
+                        <a style={{fontSize:'14px'}} className='m-3 text-muted'href='#'>MCX</a>
+                        <a style={{fontSize:'14px'}} className='m-3 text-muted'href='#'>Terms & conditions</a>
+                        <a style={{fontSize:'14px'}} className='m-3 text-muted'href='#'>Policies & procedures</a>
+                        <a style={{fontSize:'14px'}} className='m-3 text-muted'href='#'>Privacy policy </a>
+                        <a style={{fontSize:'14px'}} className='m-3 text-muted'href='#'>Disclosure </a>
+                        <a style={{fontSize:'14px'}} className='m-3 text-muted'href='#'>For investor's attention</a>
+                        <a style={{fontSize:'14px'}} className='m-3 text-muted'href='#'>Investor charter</a>
                     </div>
                 
             </div>
