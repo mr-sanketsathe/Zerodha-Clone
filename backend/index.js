@@ -1,14 +1,11 @@
 require('dotenv').config();
 const Mongoose=require('mongoose');
 const express=require('express');
-const Holding=require('./Model/HoldingModel');
-const Position=require('./Model/PositionModel')
 const User=require('./Model/UserModel');
 const OrdersModel=require('./Model/OrdersModel');
 const cors=require('cors');
 const cookieParser = require("cookie-parser");
 const url=process.env.MONGO_URL;
-const bcrypt=require('bcrypt');
 const PORT=process.env.PORT||3002;
 const authRoute = require("./Route/userRoute");
 const app=express();
