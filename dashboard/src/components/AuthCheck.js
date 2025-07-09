@@ -17,7 +17,7 @@ const AuthCheck = () => {
           
         }
       } catch (err) {
-        window.location.href = "http://localhost:3000/login";
+        window.location.href = process.env.REACT_APP_LOGIN_ROUTE;
       } finally {
         setLoading(false);
       }
