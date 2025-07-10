@@ -5,7 +5,7 @@ export default function Positions(){
    useEffect(()=>{
       async function GetPositions() {
         try{
-          let res=await axios.get('https://zerodhabackend-zyfe.onrender.com/Positions');
+          let res=await axios.get(`${process.env.REACT_APP_BACKEND_URL}/Positions`);
           setPositions(res.data);
         }catch(err){
           console.log(err);

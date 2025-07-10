@@ -8,7 +8,7 @@ export const UserProvider = ({ children }) => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const userRes = await axios.get("https://zerodhabackend-zyfe.onrender.com/getuser", {
+        const userRes = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/getuser`, {
           withCredentials: true,
         });
 
@@ -39,10 +39,11 @@ export const UserProvider = ({ children }) => {
 
 const logout = async () => {
   try {
-    await axios.get("https://zerodhabackend-zyfe.onrender.com/logout", {
+   const logoutRes= await axios.get(`${process.env.REACT_APP_BACKEND_URL}/logout`, {
       withCredentials: true,
     });
-    window.location.href = "zerodha-clone-tau-seven.vercel.app/login";
+    console.log(logoutRes);
+    window.location.href = `${process.env.REACT_APP_FRONTEND_URL}/login`
   } catch (err) {
     console.error("Logout error:", err);
   }

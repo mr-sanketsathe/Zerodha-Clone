@@ -9,15 +9,16 @@ const AuthCheck = () => {
   useEffect(() => {
     const verify = async () => {
       try {
-        const res = await axios.get("https://zerodhabackend-zyfe.onrender.com/dashboard", {
+        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/dashboard`, {
           withCredentials: true,
         });
-        if (res.status === 200) {
+        if (res.status === 200 ||res.token) {
           setIsAuth(true);
+          localStorage.setItem("token", res.token);
           
         }
       } catch (err) {
-        window.location.href = process.env.REACT_APP_LOGIN_ROUTE;
+        window.location.href = `${process.env.REACT_APP_FRONTEND_URL}/login`;
       } finally {
         setLoading(false);
       }

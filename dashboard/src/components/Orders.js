@@ -12,7 +12,7 @@ const Orders = () => {
   const getOrders = async () => {
     try {
       const res = await axios.post(
-        "https://zerodhabackend-zyfe.onrender.com/OrderList",
+        `${process.env.REACT_APP_BACKEND_URL}/OrderList`,
         { id: user[2] },
         { withCredentials: true }
       );
