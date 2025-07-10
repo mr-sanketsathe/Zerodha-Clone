@@ -23,15 +23,16 @@ const LoginPage = () => {
 
     try {
       const { data } = await axios.post(
-        "https://zerodhabackend-zyfe.onrender.com/login",
+        `${process.env.REACT_APP_BACKEND_URL}/login`,
         { email, password },
         { withCredentials: true }
       );
-
+ 
       if (data.success) {
         toast.success("Login successful!");
+        localStorage.setItem('token',data.token);
         setTimeout(() => {
-         window.location.href = process.env.REACT_APP_DASHBOARD_ORIGIN;
+         window.location.href =process.env.REACT_APP_DASHBOARD_URL
         }, 1500);
       } else {
         toast.error(data.message);

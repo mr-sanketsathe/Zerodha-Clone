@@ -36,14 +36,15 @@ const Signup = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        "https://zerodhabackend-zyfe.onrender.com/signup",
+       `${process.env.REACT_APP_BACKEND_URL}/signup`,
         { ...inputValue },
         { withCredentials: true }
       );
-
+      console.log(data);
       const { success, message } = data;
       if (success) {
         handleSuccess(message);
+         localStorage.setItem('token',data.token);
         setTimeout(() => {
           navigate("/login");
         }, 1000);
