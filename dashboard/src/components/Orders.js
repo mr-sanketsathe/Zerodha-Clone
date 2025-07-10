@@ -22,7 +22,7 @@ const Orders = () => {
       }
     }
     getOrders();
-  }, [refresh]);
+  }, [refresh,user]);
 
   return (
     <div className="orders-container">
