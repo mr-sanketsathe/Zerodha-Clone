@@ -42,7 +42,7 @@ const logout = async () => {
     await axios.get("https://zerodhabackend-zyfe.onrender.com/logout", {
       withCredentials: true,
     });
-    window.location.href = "http://localhost:3000/";
+    window.location.href = "zerodha-clone-tau-seven.vercel.app/login";
   } catch (err) {
     console.error("Logout error:", err);
   }
