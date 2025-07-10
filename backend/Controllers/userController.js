@@ -50,7 +50,7 @@ const Signup = async (req, res, next) => {
       let hashPassword = await bcrypt.hash(password, 12);
       const user = await User.create({ email, hashPassword, username, createdAt });
       const token = createSecretToken(user._id);
-      console.log("user info:",user);
+      console.log("user info:", user);
       res.cookie("token", token, {
         httpOnly: true,
         secure: true,
@@ -102,7 +102,7 @@ const Login = async (req, res, next) => {
     }
 
   } catch (error) {
-    return  res.status(400).json({message:error});
+    return res.status(400).json({ message: error });
   }
 }
 
@@ -141,38 +141,41 @@ const dashboard = async (req, res) => {
 const buyStock = async (req, res) => {
   try {
     let { name, price, qty, mode, userId } = req.body;
-    if (name && price && qty && mode && userId) {
-      let newUser = await User.findById(userId).populate('Orders');
-      if (newUser) {
-        if (newUser.Orders.length > 0) {
-          for (order of newUser.Orders) {
-            if (order.name == name) {
-              order.qty += Number(qty);
-              order.price += Number(price);
-              await order.save();
-              return res.status(201).json({message: 'you bought new stock which you own' });
-            }
-          }
-        } else {
-          let newOrder = new OrdersModel({
-            name: name,
-            price: price,
-            qty: qty,
-            mode: mode
-          })
-          newUser.Orders.push(newOrder);
-          await newOrder.save();
-          await newUser.save();
-          return res.status(201).json({message: "stock buy success" });
+    console.log("stock buying");
 
-        }
-      }
-    }else{
-      return res.status(400).json({message:"all field are required"});
+    if (!name || !price || !qty || !mode || !userId) {
+      return res.status(400).json({ message: "All fields are required" });
     }
 
+    let newUser = await User.findById(userId).populate('Orders');
+    if (!newUser) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    let existingOrder = newUser.Orders.find(order => order.name === name);
+
+    if (existingOrder) {
+      existingOrder.qty += Number(qty);
+      existingOrder.price += Number(price);
+      await existingOrder.save();
+      return res.status(201).json({ message: 'Stock buy successfully' });
+    }
+    let newOrder = new OrdersModel({
+      name: name,
+      price: price,
+      qty: qty,
+      mode: mode
+    });
+
+    newUser.Orders.push(newOrder);
+    await newOrder.save();
+    await newUser.save();
+
+    return res.status(201).json({ message: "Stock buy successfully" });
+
   } catch (err) {
-    return res.status(400).json({ message:err});
+    console.log(err);
+    return res.status(500).json({ message: "Server error" });
   }
 
 }
@@ -181,12 +184,13 @@ const buyStock = async (req, res) => {
 const sellStock = async (req, res, next) => {
   try {
     let { qty, userId, stock } = req.body;
-    if(!qty || !userId || !stock){
-      return res.status(400).json({message:"all fields required"});
+    console.log("stock selling");
+    if (!qty || !userId || !stock) {
+      return res.status(400).json({ message: "all fields required" });
     }
     let user = await User.findById(userId).populate('Orders');
-    if(!user){
-      return res.status(404).json({message:"user not found"});
+    if (!user) {
+      return res.status(404).json({ message: "user not found" });
     }
     if (user.Orders.length > 0) {
       for (Order of user.Orders) {
@@ -199,14 +203,14 @@ const sellStock = async (req, res, next) => {
             user.Orders.pop(Order);
             await user.save();
           }
-           await Order.save();
+          await Order.save();
           return res.status(200).json({ qty: Order.qty, message: 'stock sell successfully' });
         }
       }
     }
-    return res.status(404).json({ message: "you are not hold that stock"});
+    return res.status(404).json({ message: "you are not hold that stock" });
   } catch (err) {
-    res.status(400).json({  message: err});
+    res.status(400).json({ message: err });
   }
 }
 module.exports = { Holdings, Positions, OrderList, Signup, Login, dashboard, logout, getUser, buyStock, sellStock };
