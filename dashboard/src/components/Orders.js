@@ -7,22 +7,26 @@ const Orders = () => {
   const [orders, setOrders] = useState();
 
   useEffect(() => {
-    async function getOrders() {
-      try {
-        const res = await axios.post(
-          "https://zerodhabackend-zyfe.onrender.com/OrderList",
-          { id: user[2] },
-          { withCredentials: true }
-        );
-        if (res.data) {
-          setOrders(res.data.Orders);
-        }
-      } catch (err) {
-        console.log(err);
+  if (!user || !user[2]) return;
+
+  const getOrders = async () => {
+    try {
+      const res = await axios.post(
+        "https://zerodhabackend-zyfe.onrender.com/OrderList",
+        { id: user[2] },
+        { withCredentials: true }
+      );
+      if (res.data) {
+        setOrders(res.data.Orders);
       }
+    } catch (err) {
+      console.error(err);
     }
-    getOrders();
-  }, [refresh,user]);
+  };
+
+  getOrders();
+}, [refresh, user]); 
+
 
   return (
     <div className="orders-container">
