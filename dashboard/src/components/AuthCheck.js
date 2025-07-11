@@ -4,7 +4,7 @@ import Home from "./Home";
 
 const AuthCheck = () => {
   const [loading, setLoading] = useState(true);
-  const [isAuth, setIsAuth] = useState(false);
+  const [isAuth, setIsAuth] = useState(true);
 
   useEffect(() => {
     const verify = async () => {
