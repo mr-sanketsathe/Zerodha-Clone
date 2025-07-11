@@ -6,6 +6,7 @@ const bcrypt = require("bcrypt");
 const createSecretToken = require("../Utils/SecretToken");
 //app controllers
 const Holdings = async (req, res) => {
+  console.log("incomming request for Holdings");
   try {
     let holdings = await Holding.find({});
     res.status(200).json(holdings);
@@ -15,6 +16,7 @@ const Holdings = async (req, res) => {
 }
 
 const Positions = async (req, res) => {
+  console.log("incomming request for Positions");
   try {
     let Positions = await Position.find({});
     res.json(Positions);
@@ -25,6 +27,7 @@ const Positions = async (req, res) => {
 }
 
 const OrderList = async (req, res) => {
+  console.log("incomming request for Orderlist");
   let { id } = req.body;
   try {
     if (id) {
@@ -40,6 +43,7 @@ const OrderList = async (req, res) => {
 
 // auth controllers
 const Signup = async (req, res, next) => {
+  console.log("incomming request for signup");
   const { email, password, username, createdAt } = req.body;
   try {
     if (username && email && password) {
@@ -74,6 +78,7 @@ const Signup = async (req, res, next) => {
 };
 
 const Login = async (req, res, next) => {
+   console.log("incomming request for login");
   try {
     const { email, password } = req.body;
     if (email && password) {
@@ -108,6 +113,7 @@ const Login = async (req, res, next) => {
 
 
 const logout = async (req, res) => {
+  console.log("incomming request for logout");
   res.clearCookie("token", {
     httpOnly: true,
     secure: true,
@@ -120,10 +126,12 @@ const logout = async (req, res) => {
 
 //user controllers
 const getUser = (req, res) => {
+   console.log("incomming request for getuser");
   res.json(req.user);
 };
 
 const dashboard = async (req, res) => {
+  console.log("incomming request for dashboard");
   const user = req.user;
   const token = createSecretToken(user._id);
   res.cookie("token", token, {
@@ -139,9 +147,9 @@ const dashboard = async (req, res) => {
 }
 
 const buyStock = async (req, res) => {
+  console.log("incomming request for buying stock");
   try {
     let { name, price, qty, mode, userId } = req.body;
-    console.log("stock buying");
 
     if (!name || !price || !qty || !mode || !userId) {
       return res.status(400).json({ message: "All fields are required" });
@@ -182,6 +190,7 @@ const buyStock = async (req, res) => {
 
 
 const sellStock = async (req, res, next) => {
+  console.log("incomming request for selling stock");
   try {
     let { qty, userId, stock } = req.body;
     console.log("stock selling");

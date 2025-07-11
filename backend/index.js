@@ -21,6 +21,8 @@ app.use(
     credentials: true,
   })
 );
+
+//for testing purpose
 app.get("/DeleteUser",async (req,res)=>{
     let Res1= await User.deleteMany({});
     let Res2=await OrdersModel.deleteMany({});
