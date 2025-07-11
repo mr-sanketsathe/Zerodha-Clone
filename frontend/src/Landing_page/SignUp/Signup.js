@@ -6,6 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Signup = () => {
   const navigate = useNavigate();
+  const[loading,setloading]=useState(false);
   const [inputValue, setInputValue] = useState({
     email: "",
     password: "",
@@ -33,6 +34,7 @@ const Signup = () => {
     });
 
   const handleSubmit = async (e) => {
+    setloading(prev=>!prev);
     e.preventDefault();
     try {
       const { data } = await axios.post(
@@ -48,8 +50,10 @@ const Signup = () => {
         setTimeout(() => {
           navigate("/login");
         }, 1000);
+        setloading(prev=>!prev);
       } else {
         handleError(message);
+         setloading(prev=>!prev);
       }
     } catch (error) {
       console.log(error);
@@ -104,7 +108,7 @@ const Signup = () => {
               required
             />
           </div>
-          <button type="submit" className="btn btn-primary w-100">Create Account</button>
+          <button type="submit" className="btn btn-primary w-100">{loading?"Processing ...":"Create Account"}</button>
         </form>
         <div className="text-center mt-3">
           <small>

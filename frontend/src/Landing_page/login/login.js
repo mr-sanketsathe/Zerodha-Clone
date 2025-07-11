@@ -5,12 +5,12 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const LoginPage = () => {
-  
+  const[loading,setloading]=useState(false);
   const [inputValue, setInputValue] = useState({
     email: "",
     password: "",
   });
-
+  
   const { email, password } = inputValue;
 
   const handleChange = (e) => {
@@ -19,6 +19,7 @@ const LoginPage = () => {
   };
 
   const handleSubmit = async (e) => {
+    setloading(prev=>!prev);
     e.preventDefault();
 
     try {
@@ -34,8 +35,10 @@ const LoginPage = () => {
         setTimeout(() => {
          window.location.href =process.env.REACT_APP_DASHBOARD_URL
         }, 1500);
+        setloading(prev=>!prev);
       } else {
         toast.error(data.message);
+        setloading(prev=>!prev);
       }
     } catch (err) {
       toast.error("Login failed. Please try again.");
@@ -74,7 +77,7 @@ const LoginPage = () => {
             />
           </div>
           <button type="submit" className="btn btn-primary w-100">
-            Login
+           {loading?"Proccesing...":"Login"} 
           </button>
         </form>
         <div className="text-center mt-3">
