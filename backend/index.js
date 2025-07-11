@@ -21,7 +21,10 @@ app.use(
     credentials: true,
   })
 );
-
+app.use((req,res,next)=>{
+    console.log("someone sending request for interaction");
+    next();
+})
 //for testing purpose
 app.get("/DeleteUser",async (req,res)=>{
     let Res1= await User.deleteMany({});
