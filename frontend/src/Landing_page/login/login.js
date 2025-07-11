@@ -33,7 +33,7 @@ const LoginPage = () => {
         toast.success("Login successful!");
         localStorage.setItem('token',data.token);
         setTimeout(() => {
-         window.location.href =process.env.REACT_APP_DASHBOARD_URL
+         window.location.href =`${process.env.REACT_APP_DASHBOARD_URL}/`
         }, 1500);
         setloading(prev=>!prev);
       } else {
